@@ -1,8 +1,7 @@
 <template>
   <div>
-    <!-- liste des noms des films-->
     <v-row>
-      <v-col v-for="movie in movies" :key="movie.id" cols="3">
+      <v-col v-for="movie in movieFiltered" :key="movie.id" cols="3">
         <v-card>
           <v-img
             :src="`${config.url.photo_path}${movie.poster_path}`"
@@ -25,11 +24,16 @@
     </v-row>
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import config from "@/config.json";
+
 export default {
   name: "MoviesList",
+  props: {
+    searchQuery: String,
+  },
   data() {
     return {
       config,
@@ -48,6 +52,16 @@ export default {
     },
     sendMovie(movie) {
       this.$emit("showMovieDetailEmit", movie);
+    },
+  },
+  computed: {
+    movieFiltered() {
+      if (!this.searchQuery) return this.movies;
+      return this.movies.filter((movie) => {
+        return movie.title
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
     },
   },
 };

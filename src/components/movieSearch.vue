@@ -1,10 +1,23 @@
 <template>
-    <div>
-
-    </div>
+  <v-text-field
+    v-model="searchQuery"
+    label="Rechercher un film"
+    single-line
+    clearable
+  ></v-text-field>
 </template>
+
 <script>
 export default {
-    name: 'movieSearch',
-}
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
+  watch: {
+    searchQuery(newVal) {
+      this.$emit("searchMovieEmit", newVal);
+    },
+  },
+};
 </script>

@@ -1,6 +1,11 @@
 <template>
   <div>
-    <MovieList @showMovieDetailEmit="showMovieDetail" />
+    <MovieSearch @searchMovieEmit="setMovieSearch"></MovieSearch>
+
+    <MovieList
+      @showMovieDetailEmit="showMovieDetail"
+      :searchQuery="searchValue"
+    />
     <v-dialog v-model="dialog" max-width="1200px">
       <MovieDetail
         v-if="selectedMovie"
@@ -15,17 +20,18 @@
 import MovieDetail from "../components/MovieDetail.vue";
 import MovieList from "../components/MovieList.vue";
 import MovieSearch from "../components/movieSearch.vue";
-import MoviePagination from "@/components/MoviePagination.vue";
 
 export default {
   components: {
     MovieList,
     MovieDetail,
+    MovieSearch,
   },
   data() {
     return {
       selectedMovie: null,
       dialog: false,
+      searchValue: "",
     };
   },
   methods: {
@@ -36,6 +42,9 @@ export default {
     closeDetail() {
       this.selectedMovie = null;
       this.dialog = false;
+    },
+    setMovieSearch(value) {
+      this.searchValue = value;
     },
   },
 };
