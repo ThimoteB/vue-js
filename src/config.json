@@ -1,8 +1,0 @@
-{
-  "url": {
-    "movie_list": "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&sort_by=popularity.desc",
-    "movie_detail": "https://api.themoviedb.org/3/movie/",
-    "photo_path": "https://image.tmdb.org/t/p/w300"
-  },
-  "api_key": "YOUR_API_KEY"
-}
