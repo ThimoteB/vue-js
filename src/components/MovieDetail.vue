@@ -11,10 +11,17 @@
           <v-icon>mdi-star</v-icon>
         </v-avatar>
         {{ movie.vote_average }}
+        <span
+          v-for="star in parseInt(movie.vote_average)"
+          :key="star"
+          class="star"
+        >
+          <v-icon color="amber darken-3">mdi-star</v-icon>
+        </span>
       </v-chip>
     </v-card-subtitle>
     <v-card-text>{{ movie.overview }}</v-card-text>
-    <v-card-actions>
+    <v-card-actions class="justify-center">
       <v-btn color="primary" @click="closeDetail">Fermer</v-btn>
     </v-card-actions>
   </v-card>
